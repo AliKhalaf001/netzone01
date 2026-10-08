@@ -49,7 +49,7 @@
     <!-- تنسيقات تحسين أداء الهاتف والتطبيق (App & Web Compatibility) -->
     <style>
         * {
-            -webkit-tap-highlight-color: transparent; /* إلغاء التظليل الأزرق عند النقر بالهاتف */
+            -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
         }
 
@@ -61,7 +61,7 @@
             padding-bottom: env(safe-area-inset-bottom);
         }
 
-        /* منع الزوم التلقائي في الآيفون والأندرويد عند الكتابة داخل الحقول */
+        /* منع التكبير التلقائي في الآيفون والأندرويد عند الكتابة داخل الحقول */
         input, textarea, select {
             font-size: 16px !important;
         }
@@ -80,14 +80,6 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.02); }
-        }
-        .animate-pulse-glow {
-            animation: pulseGlow 3s infinite ease-in-out;
         }
 
         ::-webkit-scrollbar {
@@ -361,11 +353,11 @@
 
     <!-- JavaScript المطور والمرن للروابط الخارجية والتطبيق -->
     <script>
-        // دالة آمنة وموحدة لفتح جميع الروابط الخارجية على الهواتف والتطبيقات والمواقع
+        // دالة موحدة لفتح كافة الروابط الخارجية بأسلوب متوافق مع تطبيقات الهاتف WebView والمواقع
         function openExternalLink(url) {
             if (!url) return;
             try {
-                // التوجيه المباشر يحل مشكلة WebView والحظر في آيفون وأندرويد
+                // الفتح عبر الموقع الحالي يتيح للـ WebView التقاط الرابط والتحويل المباشر للتطبيقات
                 window.location.href = url;
             } catch (e) {
                 window.open(url, '_self');
@@ -513,7 +505,7 @@
                 return true;
             }
 
-            // زر تحويل الواتساب
+            // تحويل طلب الاشتراك عبر الواتساب
             document.getElementById('whatsappBtn').addEventListener('click', () => {
                 if (!validateInputs()) return;
 
@@ -539,7 +531,7 @@
                 openExternalLink(whatsappUrl);
             });
 
-            // زر تحويل البريد الإلكتروني (Gmail)
+            // تحويل طلب الاشتراك عبر البريد الإلكتروني (Gmail)
             document.getElementById('gmailBtn').addEventListener('click', () => {
                 if (!validateInputs()) return;
 
